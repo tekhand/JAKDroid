@@ -1,9 +1,11 @@
 # JAK Droid Project
 # Valley View High School Moreno Valley
-# 2017-2018  Lead: Josiah Wallace
+# 2017-2018 Lead: Josiah Wallace
 # 2017-2018 Team: Kaitlin Hernandez, Kenneth G Sanchez
 # 2018-2019 Lead: Kaitlin Hernandez
-# 2018-2019 Team:
+# 2018-2019 Team: N/A
+# 2019-2020 Lead: Timothy Lor
+# 2019-2020 Team: Aaron Liam, Roman Lara, Ray Tabelual
 # Original Author of Adafruit code: Tony DiCola
 # License: Public Domain
 from __future__ import division
@@ -29,10 +31,6 @@ pwm = Adafruit_PCA9685.PCA9685()
 
 # Set frequency to 60hz, good for servos.
 pwm.set_pwm_freq(60)
-
-
-
-
 
 # lEyeU-D = 0
 #   Servo Range = 390(down) - 440(up)
