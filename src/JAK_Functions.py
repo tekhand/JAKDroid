@@ -294,8 +294,8 @@ def talkToStudent():
 
 print('Sucessfully started... press Ctrl-C to quit...')
 
-#start everything here
-time.sleep(.5)
+#start everything for debugging
+#time.sleep(.5)
 
 #main operations
 #headUpDown();
@@ -303,7 +303,7 @@ time.sleep(.5)
 #blink();
 #shakeHead();
 #talkToStudent();
-introduceJak();
+#introduceJak();
 #skit();
 
 #head movements
