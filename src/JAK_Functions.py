@@ -140,7 +140,7 @@ def simpleTest():
     blink()
     lookDown()
     lookCFV()
-    introduceJak()
+    introduce()
     
 # We don't need to know how this works
 # it just does and we can call this function 
@@ -267,10 +267,10 @@ def shakeHead(): # Shakes head (like how I did at the code I had to document & f
 # Basic function which commands Jak to open his mouth,
 # then speak, then close it again
 def say(speakVar):
-    pwm.set_pwm(6, 0, 350) #opens mouth
-    os.system(("espeak '{}'").format(speakVar))
-    sleep(.1) #waits in seconds
-    pwm.set_pwm(6, 0, 225) #closes mouth
+    pwm.set_pwm(6, 0, 350) # opens mouth
+    os.system(("espeak '{}'").format(speakVar)) # takes variable and formats it into espeak
+    sleep(.1) # waits in seconds
+    pwm.set_pwm(6, 0, 225) # closes mouth
     sleep(.5)
 
 # Interactive functions
