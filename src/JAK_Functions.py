@@ -59,8 +59,8 @@ rEyeD = 525
 rEyeC = 510
 
 # rEyeL-R = 2
-#   Servo Range = 175(right) - 575(left)
-#   Center: 300(from left) - 475(from right)
+#  Servo Range = 175(right) - 575(left)
+#  Center: 300(from left) - 475(from right)
 
 rEyeL = 575
 rEyeR = 175
@@ -68,36 +68,36 @@ rEyeCFL = 300  #Center From Left
 rEyeCFR = 475  #Center From Right
 
 # lEyeL-R = 3
-#   Servo Range = 200(right) - 550(left)
-#   Center: 400(from both ways)
+#  Servo Range = 200(right) - 550(left)
+#  Center: 400(from both ways)
 
 lEyeL = 550
 lEyeR = 200
 lEyeC = 400
 
 # topEyelid = 4
-# Servo range = 350(open) - 435(closed)
+#  Servo range = 350(open) - 435(closed)
 
 tEyelidO = 350
 tEyelidC = 435
 
 # botttomEyelid = 5
-# Servo range = 225(open) - 310(closed)
+#  Servo range = 225(open) - 310(closed)
 
 bEyelidO = 225
 bEyelidC = 310
 
 # mouth = 6
-# Servo range = 450(open) - 225(closed)
+#  Servo range = 450(open) - 225(closed)
 
 mouthO = 450
 mouthC = 225
 
 # neckL-R = 7
-# Servo Range = 300(right) - 500(left)
-# Center: 400
-# -1 is for numerically decending numbers IE: 400 - 300
-# 1 is for numerically ascending numbers IE: 300 - 500
+#   Servo Range = 300(right) - 500(left)
+#   Center: 400
+#   -1 is for numerically decending numbers IE: 400 - 300
+#   1 is for numerically ascending numbers IE: 300 - 500
 
 neckL = 500
 neckR = 300
@@ -273,7 +273,9 @@ def say(speakVar):
     pwm.set_pwm(6, 0, 225) #closes mouth
     sleep(.5)
 
-#only documenting this functions cause why not
+# Interactive functions
+
+# Self explanatory
 def introduce():
     say("hello")
 
