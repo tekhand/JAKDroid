@@ -8,20 +8,30 @@
 # 2019-2020 Team: Aaron Liam, Roman Lara, Ray Tabelual
 # Original Author of Adafruit code: Tony DiCola
 # License: Public Domain
-from __future__ import division
-import time
-import RPi.GPIO as GPIO
-pin = 4
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(pin, GPIO.IN)
 
-# Import the PCA9685 module.
+# Dependencies
+from __future__ import division
+from time import sleep
+import RPi.GPIO as GPIO
 import Adafruit_PCA9685
 import os
 
 # Uncomment to enable debug output.
 #import logging
 #logging.basicConfig(level=logging.DEBUG)
+
+# set up
+pin = 4 # pretty sure this pin goes unsed here 
+        # besides the set up but I'll leave it here just in case
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(pin, GPIO.IN)
+
+###################################################################
+# I don't know anything about the code below & I'm pretty sure    #
+# that Josiah Wallace wrote this so I'm just gonna leave it here  #
+# if somebody wants to interpret it for me and document it        #
+#                                                  -Tim    =D     #
+###################################################################
 
 # Initialise the PCA9685 using the default address (0x40).
 pwm = Adafruit_PCA9685.PCA9685()
@@ -66,34 +76,32 @@ lEyeR = 200
 lEyeC = 400
 
 # topEyelid = 4
-#   Servo range = 350(open) - 435(closed)
+# Servo range = 350(open) - 435(closed)
 
 tEyelidO = 350
 tEyelidC = 435
 
 # botttomEyelid = 5
-#   Servo range = 225(open) - 310(closed)
+# Servo range = 225(open) - 310(closed)
 
 bEyelidO = 225
 bEyelidC = 310
 
 # mouth = 6
-#   Servo range = 450(open) - 225(closed)
+# Servo range = 450(open) - 225(closed)
 
 mouthO = 450
 mouthC = 225
 
 # neckL-R = 7
-#   Servo Range = 300(right) - 500(left)
-#   Center: 400
-#   -1 is for numerically decreasing numbers IE: 400 - 300
-#   1 is for numerically increasing numbers IE: 300 - 500
-
+# Servo Range = 300(right) - 500(left)
+# Center: 400
+# -1 is for numerically decending numbers IE: 400 - 300
+# 1 is for numerically ascending numbers IE: 300 - 500
 
 neckL = 500
 neckR = 300
 neckC = 400
-
 
 # Head up and down is based off of sleep time not servo positions
 # Further away from headStop / 414 is faster movement
@@ -104,221 +112,207 @@ headUp = 404   #or 403
 headStop = 414
 headDown = 424
 
-#functions
+# Functions
 def headUpDown():
     pwm.set_pwm(8, 0, headUp)
-    time.sleep(1)
+    sleep(1)
     pwm.set_pwm(8, 0, headStop)
-    time.sleep(1)
+    sleep(1)
     
     pwm.set_pwm(8, 0, headDown)
-    time.sleep(2)
+    sleep(2)
     pwm.set_pwm(8, 0, headStop)
-    time.sleep(1)
+    sleep(1)
 
     pwm.set_pwm(8, 0, headUp)
-    time.sleep(1)
+    sleep(1)
     pwm.set_pwm(8, 0, headStop)
-    time.sleep(1)
+    sleep(1)
 
-def s():    #Sleep
-    time.sleep(.5)
-
-def simpleTest():
-        
-    shakeHead();
-    s();
-    blink();
-    s();
-    blink();
-    s();
-    lookUp();
-    blink();
-    lookDown();
-    lookCFV();
-    introduceJak();
+def simpleTest():    
+    shakeHead()
+    sleep(.5)
+    blink()
+    sleep(.5)
+    blink()
+    sleep(.5)
+    lookUp()
+    blink()
+    lookDown()
+    lookCFV()
+    introduceJak()
     
-
+# We don't need to know how this works
+# it just does and we can call this function 
+# whenever we need to
 def blink():
     pwm.set_pwm(4, 0, tEyelidC)
     pwm.set_pwm(5, 0, bEyelidC)
-    time.sleep(.15)
+    sleep(.15)
 
     pwm.set_pwm(4, 0, tEyelidO)
     pwm.set_pwm(5, 0, bEyelidO)
 
-def headLeftFC():
+# TODO: Strip the stupid naming convention.
+# It's so confusing and I don't want to do this
+# so if this is still here and I haven't removed it then
+# please feel free to rename them -Tim =P
+def headLeftFC(): # Move head Left From Center
     for x in range(400, 500, 1):
         pwm.set_pwm(7, 0, x)
-        time.sleep(.005)
+        sleep(.005)
 
-def headCFL():
+def headCFL(): # Move head Center From Left
     for x in range(500, 400, -1):
         pwm.set_pwm(7, 0, x)
-        time.sleep(.005)
-def headRightFC():
+        sleep(.005)
+        
+def headRightFC(): # Move head Right From Center
     for x in range(400, 300, -1):
         pwm.set_pwm(7, 0, x)
-        time.sleep(.005)
-def headCFR():
+        sleep(.005)
+        
+def headCFR(): # Move head Center From Right
     for x in range(300, 400, 1):
         pwm.set_pwm(7, 0, x)
-        time.sleep(.005)
-def headLTR(): # head left to right
+        sleep(.005)
+        
+def headLTR(): # Move head Left To Right
      for x in range(500, 300, -1):
         pwm.set_pwm(7, 0, x)
-        time.sleep(.005)
-def headRTL(): # head right to left
+        sleep(.005)
+        
+def headRTL(): # Move head Right To Left
     for x in range(300, 500, 1):
         pwm.set_pwm(7, 0, x)
-        time.sleep(.005)
-
-
-
+        sleep(.005)
 
 def lookLeft():
     pwm.set_pwm(2, 0, rEyeL)
     pwm.set_pwm(3, 0, lEyeL)
-    time.sleep(.5)
+    sleep(.5)
 
 def lookRight():
     pwm.set_pwm(2, 0, rEyeR)
     pwm.set_pwm(3, 0, lEyeR)
-    time.sleep(.5)
+    sleep(.5)
 
-def lookCFL():
+def lookCFL(): # Look Center From Left
     pwm.set_pwm(2, 0, rEyeCFL)
     pwm.set_pwm(3, 0, lEyeC)
-    time.sleep(.5)
+    sleep(.5)
 
-def lookCFR():
+def lookCFR(): # Look Center From Right
     pwm.set_pwm(2, 0, rEyeCFR)
     pwm.set_pwm(3, 0, lEyeC)
-    time.sleep(.5)
+    sleep(.5)
 
-def lookUp():
+def lookUp(): # Look up
     pwm.set_pwm(0, 0, lEyeU)
     pwm.set_pwm(1, 0, rEyeU)
     time.sleep(.5)
 
-def lookDown():
+def lookDown(): # Look down
     pwm.set_pwm(0, 0, lEyeD)
     pwm.set_pwm(1, 0, rEyeD)
-    time.sleep(.5)
+    sleep(.5)
 
-def lookCFV(): #Center from Vertical
+def lookCFV(): # Look Center from Vertical (whatever that means)
     pwm.set_pwm(0, 0, lEyeC)
     pwm.set_pwm(1, 0, rEyeC)
-    time.sleep(.5)
+    sleep(.5)
 
 def rollEyes():
-    blink();
+    blink()
     pwm.set_pwm(2, 0, rEyeR)
     pwm.set_pwm(3, 0, lEyeR)
-    time.sleep(.2)
+    sleep(.2)
     pwm.set_pwm(0, 0, lEyeU)
     pwm.set_pwm(1, 0, rEyeU)
-    time.sleep(.2)
+    sleep(.2)
     pwm.set_pwm(2, 0, rEyeL)
     pwm.set_pwm(3, 0, lEyeL)
-    time.sleep(.2)
+    sleep(.2)
     pwm.set_pwm(0, 0, lEyeC)
     pwm.set_pwm(1, 0, rEyeC)
-    time.sleep(.2)
+    sleep(.2)
     pwm.set_pwm(2, 0, rEyeCFL)
     pwm.set_pwm(3, 0, lEyeC)
-    blink();
-    s();
+    blink()
+    sleep(.2)
 
-def shakeHead():
+def shakeHead(): # Shakes head (like how I did at the code I had to document & fix)
     for x in range(400, 300, -1):
         pwm.set_pwm(7, 0, x)
-        time.sleep(.005)
+        sleep(.005)
         if x == 350:
-            blink();
+            blink()
 
     for x in range(300, 500, 1):
         pwm.set_pwm(7, 0, x)
-        time.sleep(.005)
+        sleep(.005)
 
     for x in range(500, 300, -1):
         pwm.set_pwm(7, 0, x)
-        time.sleep(.005)
+        sleep(.005)
         if x == 430:
-            blink();
+            blink()
             
     for x in range(300, 400, 1):
         pwm.set_pwm(7, 0, x)
-        time.sleep(.005)
+        sleep(.005)
         if x == 399:
-            blink();
-            
-def speak(speakVar):
+            blink()
+
+# Basic function which commands Jak to open his mouth,
+# then speak, then close it again
+def say(speakVar):
     pwm.set_pwm(6, 0, 350) #opens mouth
     os.system(("espeak '{}'").format(speakVar))
-    time.sleep(.1) #waits in seconds
+    sleep(.1) #waits in seconds
     pwm.set_pwm(6, 0, 225) #closes mouth
-    time.sleep(.5)
+    sleep(.5)
 
 #only documenting this functions cause why not
-def introduceJak():
+def introduce():
+    say("hello")
 
-    speak("hello")
+    say("My name is Jak")
 
-    speak("My name is Jak")
+    say("I am from the mayker space club")
 
-    speak("I am from the mayker space club")
+    say("Please join and help me take over the world")
 
-    speak("Please join and help me take over the world")
+    say("It is now your time to shine")
 
-    speak("It is now your time to shine")
-    
-
-def talkToStudent():
-    #That's whos name?
-    pwm.set_pwm(6, 0, 350)
-    os.system("espeak 'Students")
-    time.sleep(.1)
-    pwm.set_pwm(6, 0, 225)
-    #That's whos name?
-    pwm.set_pwm(6, 0, 350)
-    os.system("espeak 'My Name is Jak'")
-    time.sleep(.1)
-    pwm.set_pwm(6, 0, 225)
-    time.sleep(.1)
-    pwm.set_pwm(6, 0, 350)
-    os.system("espeak 'Valley View High School Cybor student'")
-    time.sleep(.1)
-    pwm.set_pwm(6, 0, 225)
-
-
+# Debug: notifies us that everything here ran well.
 print('Sucessfully started... press Ctrl-C to quit...')
 
-#start everything for debugging
-#time.sleep(.5)
+# Everything here is commented out
+# and will be used to debug code
 
-#main operations
-#headUpDown();
-#simpleTest();
-#blink();
-#shakeHead();
-#talkToStudent();
-#introduceJak();
-#skit();
+# Main operations
+#simpleTest()
 
-#head movements
-#lookLeft();
-#lookRight();
-#lookCFL();
-#lookCFR();
-#lookUp();
-#lookDown();
-#lookCFV();
+# Voice
+#introduce()
 
-# collaborate eyes
-#rollEyes();
+# Eye movements
+#blink()
+#lookLeft()
+#lookRight()
+#lookCFL()
+#lookCFR()
+#lookUp()
+#lookDown()
+#lookCFV()
+#rollEyes()
 
-#headLeftFC();
-#headLTR();
-#headCFR();
-           
+# Horizontal Head Rotations
+#headLeftFC()
+#headLTR()
+#headCFR()
+#shakeHead()
+
+# Vertical Head Rotations
+#headUpDown()
