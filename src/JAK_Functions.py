@@ -1,11 +1,5 @@
 # JAK Droid Project
 # Valley View High School Moreno Valley
-# 2017-2018 Lead: Josiah Wallace
-# 2017-2018 Team: Kaitlin Hernandez, Kenneth G Sanchez
-# 2018-2019 Lead: Kaitlin Hernandez
-# 2018-2019 Team: N/A
-# 2019-2020 Lead: Timothy Lor
-# 2019-2020 Team: Aaron Liam, Roman Lara, Ray Tabelual
 # Original Author of Adafruit code: Tony DiCola
 # License: Public Domain
 
