@@ -243,15 +243,25 @@ def simpleTest():
 
 # Self explanatory
 def introduce():
-    say("hello")
+    blink()
+    headLeftFC()
+    
+    speak("hello")
 
-    say("My name is Jak")
 
-    say("I am from the mayker space club")
+    speak("My name is Jak")
+    headCFL()
+    headRightFC()
+    blink()
 
-    say("Please join and help me take over the world")
+    speak("I am from the mayker space club")
+    
 
-    say("It is now your time to shine")
+    speak("Please join and help me build our new world")
+    headCFR()
+    blink()
+
+    speak("It is our time to shine")
 
 # Debug: notifies us that everything here ran well.
 print('Sucessfully started... press Ctrl-C to quit...')
