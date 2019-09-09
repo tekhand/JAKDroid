@@ -92,10 +92,12 @@ mouthC = 225
 #   Center: 400
 #   -1 is for numerically decending numbers IE: 400 - 300
 #   1 is for numerically ascending numbers IE: 300 - 500
+#   To move head left=>right it would be
+#      for(neckL, neckR, -1):
 
 neckL = 500
-neckR = 300
 neckC = 400
+neckR = 300
 
 # Head up and down is based off of sleep time not servo positions
 # Further away from headStop / 414 is faster movement
@@ -147,37 +149,12 @@ def blink():
     pwm.set_pwm(4, 0, tEyelidO)
     pwm.set_pwm(5, 0, bEyelidO)
 
-# TODO: Strip the stupid naming convention.
-# It's so confusing and I don't want to do this
-# so if this is still here and I haven't removed it then
-# please feel free to rename them -Tim =P
-def headLeftFC(): # Move head Left From Center
-    for x in range(400, 500, 1):
-        pwm.set_pwm(7, 0, x)
-        sleep(.005)
-
-def headCFL(): # Move head Center From Left
-    for x in range(500, 400, -1):
-        pwm.set_pwm(7, 0, x)
-        sleep(.005)
-        
-def headRightFC(): # Move head Right From Center
-    for x in range(400, 300, -1):
-        pwm.set_pwm(7, 0, x)
-        sleep(.005)
-        
-def headCFR(): # Move head Center From Right
-    for x in range(300, 400, 1):
-        pwm.set_pwm(7, 0, x)
-        sleep(.005)
-        
-def headLTR(): # Move head Left To Right
-     for x in range(500, 300, -1):
-        pwm.set_pwm(7, 0, x)
-        sleep(.005)
-        
-def headRTL(): # Move head Right To Left
-    for x in range(300, 500, 1):
+# Simplified function which determines head direction
+# PREREQUISTE: start and end are using neck variables
+# Left => Right (where Left>Center>Right)
+def turnHead(start, end):
+    dir = 1 if start<end else -1
+    for x in range(start, direction, dir)
         pwm.set_pwm(7, 0, x)
         sleep(.005)
 
