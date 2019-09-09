@@ -244,21 +244,20 @@ def simpleTest():
 # Self explanatory
 def introduce():
     blink()
-    headLeftFC()
+    turnHead(neckC, neckL)
     
     speak("hello")
 
 
     speak("My name is Jak")
-    headCFL()
-    headRightFC()
+    turnHead(neckL, neckR)
     blink()
 
     speak("I am from the mayker space club")
     
 
     speak("Please join and help me build our new world")
-    headCFR()
+    turnHead(neckR, neckC)
     blink()
 
     speak("It is our time to shine")
