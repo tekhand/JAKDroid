@@ -137,7 +137,7 @@ def blink():
 # Left => Right (where Left>Center>Right)
 def turnHead(start, end):
     dir = 1 if start<end else -1
-    for x in range(start, direction, dir)
+    for x in range(start, end, dir):
         pwm.set_pwm(7, 0, x)
         sleep(.005)
 
@@ -246,21 +246,21 @@ def introduce():
     blink()
     turnHead(neckC, neckL)
     
-    speak("hello")
+    say("hello")
 
 
-    speak("My name is Jak")
+    say("My name is Jak")
     turnHead(neckL, neckR)
     blink()
 
-    speak("I am from the mayker space club")
+    say("I am from the mayker space club")
     
 
-    speak("Please join and help me build our new world")
+    say("Please join and help me build our new world")
     turnHead(neckR, neckC)
     blink()
 
-    speak("It is our time to shine")
+    say("It is our time to shine")
 
 # Debug: notifies us that everything here ran well.
 print('Sucessfully started... press Ctrl-C to quit...')
