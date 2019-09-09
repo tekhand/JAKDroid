@@ -109,7 +109,7 @@ headStop = 414
 headDown = 424
 
 # Functions
-def headUpDown():
+def nodHead():
     pwm.set_pwm(8, 0, headUp)
     sleep(1)
     pwm.set_pwm(8, 0, headStop)
@@ -124,28 +124,11 @@ def headUpDown():
     sleep(1)
     pwm.set_pwm(8, 0, headStop)
     sleep(1)
-
-def simpleTest():    
-    shakeHead()
-    sleep(.5)
-    blink()
-    sleep(.5)
-    blink()
-    sleep(.5)
-    lookUp()
-    blink()
-    lookDown()
-    lookCFV()
-    introduce()
     
-# We don't need to know how this works
-# it just does and we can call this function 
-# whenever we need to
 def blink():
     pwm.set_pwm(4, 0, tEyelidC)
     pwm.set_pwm(5, 0, bEyelidC)
     sleep(.15)
-
     pwm.set_pwm(4, 0, tEyelidO)
     pwm.set_pwm(5, 0, bEyelidO)
 
@@ -188,7 +171,7 @@ def lookDown(): # Look down
     pwm.set_pwm(1, 0, rEyeD)
     sleep(.5)
 
-def lookCFV(): # Look Center from Vertical (whatever that means)
+def lookCFV(): # Look Center Vertically
     pwm.set_pwm(0, 0, lEyeC)
     pwm.set_pwm(1, 0, rEyeC)
     sleep(.5)
@@ -212,7 +195,7 @@ def rollEyes():
     blink()
     sleep(.2)
 
-def shakeHead(): # Shakes head (like how I did at the code I had to document & fix)
+def shakeHead(): # Shakes head
     for x in range(400, 300, -1):
         pwm.set_pwm(7, 0, x)
         sleep(.005)
@@ -245,6 +228,18 @@ def say(speakVar):
     sleep(.5)
 
 # Interactive functions
+def simpleTest():    
+    shakeHead()
+    sleep(.5)
+    blink()
+    sleep(.5)
+    blink()
+    sleep(.5)
+    lookUp()
+    blink()
+    lookDown()
+    lookCFV()
+    introduce()
 
 # Self explanatory
 def introduce():
